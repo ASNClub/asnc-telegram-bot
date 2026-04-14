@@ -147,7 +147,7 @@ func (tb *Bot) onPremiddle(ctx context.Context, b *bot.Bot, u *models.Update) {
 		return
 	}
 	sendEphemeral(ctx, b, msg.Chat.ID, msg.ID,
-		fmt.Sprintf("🤐 %s замучен на <b>%v</b> мин. Сам виноват.", mentionHTML(msg.From), duration),
+		fmt.Sprintf("🤐 %s замучен на <b>%.0f</b> мин. Сам виноват.", mentionHTML(msg.From), duration.Minutes()),
 		tb.ttl)
 }
 
