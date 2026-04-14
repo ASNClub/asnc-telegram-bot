@@ -12,9 +12,15 @@ type Trigger struct {
 	Delta int
 }
 
-const (
-	plusRepStickerID  = `AgADlYwAArYY6Uo`
-	minusRepStickerID = `AgADTpAAAiB38Eo`
+var (
+	plusRepStickerIDs = map[string]string{
+		"AgADlYwAArYY6Uo": "MR P.K.",
+		"AgADUKMAAnEM8Uo": "Kopatich",
+	}
+	minusRepStickerIDs = map[string]string{
+		"AgADTpAAAiB38Eo": "MR P.K.",
+		"AgADWJcAAvBI-Uo": "Losyash",
+	}
 )
 
 func Parse(msg *models.Message) *Trigger {
@@ -25,9 +31,10 @@ func Parse(msg *models.Message) *Trigger {
 }
 
 func parseSticker(sticker *models.Sticker) *Trigger {
-	if sticker.FileUniqueID == plusRepStickerID {
+	if _, ok := plusRepStickerIDs[sticker.FileUniqueID]; ok {
 		return &Trigger{Delta: 1}
-	} else if sticker.FileUniqueID == minusRepStickerID {
+	}
+	if _, ok := minusRepStickerIDs[sticker.FileUniqueID]; ok {
 		return &Trigger{Delta: -1}
 	}
 	return nil
