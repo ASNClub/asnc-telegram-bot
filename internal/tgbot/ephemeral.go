@@ -44,7 +44,7 @@ func reactThumb(ctx context.Context, b *bot.Bot, chatID int64, msgID int, positi
 
 	emoji := "🤡"
 	if positive {
-		emoji = "🎖"
+		emoji = "🧠"
 	}
 	_, err := b.SetMessageReaction(ctx, &bot.SetMessageReactionParams{
 		ChatID:    chatID,
