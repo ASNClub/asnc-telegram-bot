@@ -6,7 +6,7 @@ on:
 
 env:
   BINARY_NAME: asnc-telegram-bot
-  DEPLOY_DIR: /home/${{ secrets.SSH_USER }}/asnc-telegram-bot
+  DEPLOY_DIR: /root/asnc-telegram-bot
 
 jobs:
   deploy:
@@ -42,6 +42,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            systemctl --user restart ${{ env.BINARY_NAME }}.service
+            systemctl restart asnc-telegram-bot
             sleep 2
-            systemctl --user is-active ${{ env.BINARY_NAME }}.service
+            systemctl is-active asnc-telegram-bot
